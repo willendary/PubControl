@@ -1,10 +1,23 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PubControl.Views.CadastroPublicacao">
-  <ContentView.Content>
-      <StackLayout>
-          <Label Text="Hello Xamarin.Forms!" />
-      </StackLayout>
-  </ContentView.Content>
-</ContentView>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Nova" IconImageSource="Nova" Order="Primary" Command="{Binding NovaPublicacao}"/>
+        <ToolbarItem Text="Salvar" IconImageSource="Salvar" Order="Primary" Command="{Binding SalvarPublicacao}"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <Label Text="{Binding Id}"/>
+            <Label Text="Descricao"/>
+            <Entry Text="{Binding Descricao}" Placeholder="Digite o nome da publicação"/>
+            <Label Text="Referencia"/>
+            <Entry Text="{Binding CodigoReferencia}" Placeholder="Digite o codigo de referência"/>
+            <Label Text="Data"/>
+            <DatePicker Date="{Binding Data}" Format="dd/MM/yyyy"/>
+            <Label Text="Observacao"/>
+            <Entry Text="{Binding Observacao}" Placeholder="Adicione alguma observação"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

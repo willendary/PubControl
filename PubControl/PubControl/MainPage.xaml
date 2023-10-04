@@ -4,9 +4,23 @@
              xmlns:Views="clr-namespace:PubControl.Views"     
              x:Class="PubControl.MainPage">
     <TabBar>
-        <Tab Title="Nova Publicação" Icon="Publicacao" Route ="CadastroPublicacao">
+        <Tab Title="+ Publicação" Icon="Biblioteca" Route ="CadastroPublicacao">
             <ShellContent>
-                <Views:CadastroPublicacao Title="ASDASD"/>
+                <Views:CadastroPublicacao/>
+            </ShellContent>
+        </Tab>
+        <Tab Title="Reg. Entrada" Icon="Entrada" Route ="EntradaPublicacao">
+            <ShellContent>
+                <ContentPage>
+                    <Views:EntradaPublicacoes/>
+                </ContentPage>
+            </ShellContent>
+        </Tab>
+        <Tab Title="Reg. Saída" Icon="Saida" Route ="SaidaPublicacao">
+            <ShellContent>
+                <ContentPage>
+                    <Views:SaídaPublicacoes/>
+                </ContentPage>
             </ShellContent>
         </Tab>
     </TabBar>
