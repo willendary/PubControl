@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PubControl.Views.ListaPublicacoes"
+             x:Name="Pagina">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Atualizar" IconImageSource="refresh" Order="Primary" Command="{Binding AtualizarLista}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <SearchBar Placeholder="Descrição" Text="{Binding ParametroBusca}"/>
+                <Button Text="Buscar" Command="{Binding Buscar}"/>
+            </StackLayout>
+            <RefreshView IsRefreshing="{Binding EstaAtualizando, Mode=OneWay}" Command="{Binding AtualizarLista}">
+                <ListView ItemsSource="{Binding ListaPublicacoes}">
+                    <ListView.Header>
+                        <Grid RowDefinitions="Auto" ColumnDefinitions="*,*,*">
+                            <Label Grid.Row="0" Grid.Column="0" Text="Id"/>
+                            <Label Grid.Row="0" Grid.Column="1" Text="Desc."/>
+                            <Label Grid.Row="0" Grid.Column="2" Text="Refer."/>
+                            <Label Grid.Row="0" Grid.Column="3" Text="Tipo"/>
+                            <Label Grid.Row="0" Grid.Column="4" Text="Data"/>
+                            <Label Grid.Row="0" Grid.Column="5" Text="Obs."/>
+                        </Grid>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.ContextActions>
+                                    <MenuItem Text="Detalhes"
+                                              Command="{Binding Source={x:Reference Pagina},Path=BindingContext.AbrirDetalhesPublicacao}}"
+                                              CommandParameter="{Binding Id}"/>
+                                    <MenuItem Text="Excluir" 
+                                              Command="{Binding Source={x:Reference Pagina},Path=BindingContext.Remover}}"
+                                              CommandParameter="{Binding Id}"/>
+                                </ViewCell.ContextActions>
+                                <Grid RowDefinitions="Auto" ColumnDefinitions="*,*,*">
+                                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding Id}"/>
+                                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding Descricao}"/>
+                                    <Label Grid.Row="0" Grid.Column="2" Text="{Binding Referencia}"/>
+                                    <Label Grid.Row="0" Grid.Column="3" Text="{Binding Tipo}"/>
+                                    <Label Grid.Row="0" Grid.Column="4" Text="{Binding Data, StringFormat='{}{0:dd/MM/yyyy}'}"/>
+                                    <Label Grid.Row="0" Grid.Column="5" Text="{Binding Observacao}"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </RefreshView>
+        </StackLayout>
+    </ContentPage.Content>
+    
+</ContentPage>

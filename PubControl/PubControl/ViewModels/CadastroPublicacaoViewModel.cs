@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
+using PubControl.Models;
 
 namespace PubControl.ViewModels
 {
+    [QueryProperty("PegarIdDaNavegacao", "parametro_id")]
     class CadastroPublicacaoViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -15,6 +17,15 @@ namespace PubControl.ViewModels
         string descricao, codigoReferencia, observacao;
         int id, tipoPublicacao;
         DateTime data;
+
+        public string PegarIdDaNavegacao
+        {
+            set
+            {
+                int id_parametro = Convert.ToInt32(Uri.UnescapeDataString(value));
+                VerPublicacao.Execute(id_parametro);
+            }
+        }
         public string Descricao
         {
             get => descricao;
@@ -22,7 +33,7 @@ namespace PubControl.ViewModels
             {
                 descricao = value;
                 PropertyChanged(this, new PropertyChangedEventArgs("Descricao"));
-            } 
+            }
         }
         public string CodigoReferencia
         {
@@ -86,10 +97,59 @@ namespace PubControl.ViewModels
         }
         public ICommand SalvarPublicacao
         {
-            get => new Command(() =>
+            get => new Command(async () =>
             {
-                Application.Current.MainPage.DisplayAlert("Alerta", "Você clicou", "OK");
+                try
+                {
+                    Publicacao model = new Publicacao()
+                    {
+                        Descricao = this.Descricao,
+                        CodigoReferencia = this.CodigoReferencia,
+                        Data = this.Data,
+                        IdTipoPublicacao = this.TipoPublicacao,
+                        Observacao = this.Observacao
+                    };
+                    if (this.Id == 0)
+                    {
+                        await App.Database.Insert(model);
+                    }
+                    else
+                    {
+                        model.Id = this.Id;
+                        await App.Database.Update(model);
+                    }
+                    await Application.Current.MainPage.DisplayAlert("Tudo certo", "Registro salvo", "OK");
+                    await Shell.Current.GoToAsync("//ListaPublicacoes");
+                }
+                catch (Exception ex)
+                {
+                    Application.Current.MainPage.DisplayAlert("Ops", ex.Message, "OK");
+                }
+
             });
-        }        
+        }
+        public ICommand VerPublicacao
+        {
+            get => new Command<int>(async (int id) =>
+            {
+                try
+                {
+                    Publicacao model = await App.Database.GetById(id);
+                    this.Id = model.Id;
+                    this.Descricao = model.Descricao;
+                    this.CodigoReferencia = model.CodigoReferencia;
+                    this.TipoPublicacao = model.IdTipoPublicacao;
+                    this.Data = model.Data;
+                    this.Observacao = model.Observacao;
+
+                }
+                catch (Exception ex)
+                {
+                    Application.Current.MainPage.DisplayAlert("Ops", ex.Message, "OK");
+                }
+            });
+
+        }
     }
+        
 }

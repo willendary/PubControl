@@ -9,6 +9,11 @@
                 <Views:CadastroPublicacao/>
             </ShellContent>
         </Tab>
+        <Tab Title="Estoque" Icon="Biblioteca" Route ="ListaPublicacoes">
+            <ShellContent>
+                <Views:ListaPublicacoes/>
+            </ShellContent>
+        </Tab>
         <Tab Title="Reg. Entrada" Icon="Entrada" Route ="EntradaPublicacao">
             <ShellContent>
                 <ContentPage>

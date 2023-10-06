@@ -16,3 +16,4 @@ E:\Projetos\PubControl\PubControl\PubControl\obj\Debug\netstandard2.0\PubControl
 E:\Projetos\PubControl\PubControl\PubControl\obj\Debug\netstandard2.0\Views\CadastroPublicacao.xaml.g.cs
 E:\Projetos\PubControl\PubControl\PubControl\obj\Debug\netstandard2.0\Views\EntradaPublicacoes.xaml.g.cs
 E:\Projetos\PubControl\PubControl\PubControl\obj\Debug\netstandard2.0\Views\SaídaPublicacoes.xaml.g.cs
+E:\Projetos\PubControl\PubControl\PubControl\obj\Debug\netstandard2.0\Views\ListaPublicacoes.xaml.g.cs

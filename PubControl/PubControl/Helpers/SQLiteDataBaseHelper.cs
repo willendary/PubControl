@@ -52,7 +52,7 @@ namespace PubControl.Helpers
 
         public Task<List<Publicacao>> Search(string q)
         {
-            string sql = "SELECT * FROM PUBLICACAO WHERE DESCRICAO LIKE '%'" + q + "'%'";
+            string sql = "SELECT * FROM PUBLICACAO WHERE DESCRICAO LIKE '%" + q + "%'";
             return _db.QueryAsync<Publicacao>(sql);
         }
             //GetAllRows()

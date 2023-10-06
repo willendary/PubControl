@@ -18,6 +18,14 @@ namespace PubControl.Views
             InitializeComponent();
             BindingContext = new CadastroPublicacaoViewModel();
         }
-    
+        protected override async void OnAppearing()
+        {
+            var vm = (CadastroPublicacaoViewModel)BindingContext;
+
+            if (vm.Id == 0)
+            {
+                vm.NovaPublicacao.Execute(null);
+            }
+        }
     }
 }
