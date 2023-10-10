@@ -29,10 +29,10 @@
                             <ViewCell>
                                 <ViewCell.ContextActions>
                                     <MenuItem Text="Detalhes"
-                                              Command="{Binding Source={x:Reference Pagina},Path=BindingContext.AbrirDetalhesPublicacao}}"
+                                              Command="{Binding Source={x:Reference Pagina},Path=BindingContext.AbrirDetalhesPublicacao}"
                                               CommandParameter="{Binding Id}"/>
                                     <MenuItem Text="Excluir" 
-                                              Command="{Binding Source={x:Reference Pagina},Path=BindingContext.Remover}}"
+                                              Command="{Binding Source={x:Reference Pagina},Path=BindingContext.Remover}"
                                               CommandParameter="{Binding Id}"/>
                                 </ViewCell.ContextActions>
                                 <Grid RowDefinitions="Auto" ColumnDefinitions="*,*,*">

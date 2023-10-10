@@ -24,7 +24,7 @@ namespace PubControl.Views
 
             if (vm.Id == 0)
             {
-                vm.NovaPublicacao.Execute(null);
+                await Task.Run(() => vm.NovaPublicacao.Execute(null));
             }
         }
     }

@@ -123,7 +123,7 @@ namespace PubControl.ViewModels
                 }
                 catch (Exception ex)
                 {
-                    Application.Current.MainPage.DisplayAlert("Ops", ex.Message, "OK");
+                    await Application.Current.MainPage.DisplayAlert("Ops", ex.Message, "OK");
                 }
 
             });
@@ -145,7 +145,7 @@ namespace PubControl.ViewModels
                 }
                 catch (Exception ex)
                 {
-                    Application.Current.MainPage.DisplayAlert("Ops", ex.Message, "OK");
+                   await Application.Current.MainPage.DisplayAlert("Ops", ex.Message, "OK");
                 }
             });
 

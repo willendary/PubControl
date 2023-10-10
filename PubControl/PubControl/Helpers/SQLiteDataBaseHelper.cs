@@ -39,10 +39,11 @@ namespace PubControl.Helpers
             return _db.QueryAsync<Publicacao>(
                 sql,
                 model.Descricao,
-                model.CodigoReferencia,
-                model.Id,
+                model.CodigoReferencia, 
+                model.IdTipoPublicacao,
                 model.Data,
-                model.Observacao);
+                model.Observacao,
+                model.Id);
         }
 
         public Task<int> Delete(int id)
